@@ -13,17 +13,17 @@ app.get("/",function(req,res){
 //NEW show form to create new project entry
 //get the data and send it to post campgrounds
 app.get("/post/new",function(req,res){
-    res.render("campgrounds/new");
+    res.render("new");
 });
 
 //Create route
 app.post("/post",function(req,res){
-    res.render("new");
+    res.send("You reached here")
 });
 
 //Show route
 app.get("/post/:id",function(req,res){
-
+  
 });
 
 //edit route
