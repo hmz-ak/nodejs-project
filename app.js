@@ -55,7 +55,14 @@ app.post("/post",function(req,res){
 
 //Show route
 app.get("/post/:id",function(req,res){
-  
+  Post.findById(req.params.id,function(err,found){
+    if(err){
+        console.log(err);
+    }else{
+        console.log(found);
+        res.render("show",{data:found});
+    }
+  });
 });
 
 //edit route

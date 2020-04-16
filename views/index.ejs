@@ -124,14 +124,14 @@
       <div class="row no-gutters">
         <% data.forEach(function(post){ %>
         <div class="col-lg-6">
-          <a class="portfolio-item" href="#">
+          <a class="portfolio-item" href="/post/<%= post._id %>">
             <span class="caption">
               <span class="caption-content">
-                <h2><%= post.name %></h2>
-                <p class="mb-0"><%= post.description %></p>
+                <h1><%= post.name %></h1>
+                <h3><p class="mb-0"><%= post.description.substring(0,150)  %>...</p></h3>
               </span>
             </span>
-            <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
+            <img class="img-fluid" style="width:600px; height:400px;"  src="<%=post.image%>" alt="">
         
           </a>
         </div>
