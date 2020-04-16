@@ -33,9 +33,6 @@ app.post("/post",function(req,res){
     var n=req.body.name;
     var img=req.body.image;
     var desc=req.body.desc;
-    console.log(n);
-    console.log(img);
-    console.log(desc);
     var data={
         name:n,
         image:img,
@@ -59,7 +56,7 @@ app.get("/post/:id",function(req,res){
     if(err){
         console.log(err);
     }else{
-        console.log(found);
+      
         res.render("show",{data:found});
     }
   });
