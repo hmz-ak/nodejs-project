@@ -1,13 +1,25 @@
 var express=require("express");
 var app=express();
-
+var parser=require("body-parser");
+var Post=require("./models/post");
+var mongoose=require("mongoose");
+app.use(parser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
 app.set("view engine","ejs");
 
+mongoose.connect("mongodb://localhost:27017/portfolio_db",{useNewUrlParser: true,useUnifiedTopology: true});
+
 //Index route
 app.get("/",function(req,res){
-    res.render("index");
+    Post.find({},function(err,body){
+        if(err){
+            console.log(err)
+        }else{
+            
+            res.render("index",{data:body});
+        }
+    })
 });
 
 //NEW show form to create new project entry
@@ -18,7 +30,27 @@ app.get("/post/new",function(req,res){
 
 //Create route
 app.post("/post",function(req,res){
-    res.send("You reached here")
+    var n=req.body.name;
+    var img=req.body.image;
+    var desc=req.body.desc;
+    console.log(n);
+    console.log(img);
+    console.log(desc);
+    var data={
+        name:n,
+        image:img,
+        description:desc
+
+    }
+
+    Post.create(data,function(err,body){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect("/"); //it will redirect to get campgrounds route by default
+        }
+    });
 });
 
 //Show route

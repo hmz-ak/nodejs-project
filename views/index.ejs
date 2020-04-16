@@ -122,17 +122,20 @@
         <h2 class="mb-5">Recent Projects</h2>
       </div>
       <div class="row no-gutters">
-        <div class="col-md-6 col-lg-4">
+        <% data.forEach(function(post){ %>
+        <div class="col-lg-6">
           <a class="portfolio-item" href="#">
             <span class="caption">
               <span class="caption-content">
-                <h2>Stationary</h2>
-                <p class="mb-0">A yellow pencil with envelopes on a clean, blue backdrop!</p>
+                <h2><%= post.name %></h2>
+                <p class="mb-0"><%= post.description %></p>
               </span>
             </span>
-            <img class="img-fluid" src="/img/portfolio-1.jpg" alt="">
+            <img class="img-fluid" src="img/portfolio-1.jpg" alt="">
+        
           </a>
         </div>
+        <%})%>
       </div>
     </div>
   </section>

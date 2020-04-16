@@ -5,4 +5,4 @@ Schema=new mongoose.Schema({
     description:String
 });
 
-module.exports=new module("Post",Schema);
+module.exports=new mongoose.model("Post",Schema);
