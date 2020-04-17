@@ -3,8 +3,29 @@ var app=express();
 var parser=require("body-parser");
 var Post=require("./models/post");
 var mongoose=require("mongoose");
+var multer=require("multer");
+var storage=multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'./uploads/')
+    },
+    filename:function(req,file,cb){
+        cb(null,file.originalname)
+}
+});
+
+var fileFilter=function(req,res,cb){
+
+}
+
+var upload=multer({storage:storage, limits:{
+    fileSize: 1024*1024*5
+}});
+
+
+
 app.use(parser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+app.use('/uploads',express.static("uploads")); //makes the folder publicily available
 
 app.set("view engine","ejs");
 
@@ -29,9 +50,9 @@ app.get("/post/new",function(req,res){
 });
 
 //Create route
-app.post("/post",function(req,res){
+app.post("/post",upload.single('image'),function(req,res){
     var n=req.body.name;
-    var img=req.body.image;
+    var img=req.file.path;
     var desc=req.body.desc;
     var data={
         name:n,
