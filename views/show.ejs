@@ -4,9 +4,8 @@
         <div class="card-body">
     <div class="thumbnail" >
         <div class="imgg">
-            <img style="width: 720px; height: 480px;" src="../<%=data.image%>" alt="">
+            <img style="max-width: 720px;width: 100%; max-height: 480px;" src="../<%=data.image%>" alt="">
             <h2 class="card-title mt-4 f"><%= data.name %></h2>
-            <%console.log(data.image)%>
         </div>
       
         <p style="text-align: center;"><i>About the project</i></p>
@@ -25,8 +24,7 @@
 <style>
     .imgg{
         text-align: center;
-        width: 720 px;
-        height: 480 px;
+      
     }
     .f{
         font-family: Open Sans, sans-serif;

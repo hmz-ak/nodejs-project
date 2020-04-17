@@ -3,7 +3,7 @@ var app=express();
 var parser=require("body-parser");
 var Post=require("./models/post");
 var mongoose=require("mongoose");
-var multer=require("multer");
+var multer=require("multer"); //for image uploading
 var storage=multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'./uploads/')
