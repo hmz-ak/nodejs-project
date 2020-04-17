@@ -4,12 +4,13 @@
         <div class="card-body">
     <div class="thumbnail" >
         <div class="imgg">
-            <img style="text-align: center;" src="<%= data.image %>" alt="">
-            <h2 class="card-title mt-4"><%= data.name %></h2>
+            <img style="width: 720px; height: 480px;" src="<%= data.image %>" alt="">
+            <h2 class="card-title mt-4 f"><%= data.name %></h2>
         </div>
       
-        
-             <p><%= data.description %></p>
+        <p style="text-align: center;"><i>About the project</i></p>
+             <p class="p"><%= data.description %></p>
+             
          </div>
                 
             </div>
@@ -17,10 +18,34 @@
     </div>
 </div>
 
+
+<%- include('./partials/footer') %>
+
 <style>
     .imgg{
         text-align: center;
+        width: 720 px;
+        height: 480 px;
+    }
+    .f{
+        font-family: Open Sans, sans-serif;
+         color: #383838;
+         font-size: 28px;
+         font-weight: 400;
+         line-height: 1.4em;
+    }
+    .p{
+        -webkit-font-smoothing: antialiased;
+text-align: left;
+box-sizing: inherit;
+font-family: Open Sans, sans-serif;
+color: #5e5e5e;
+font-size: 16px;
+font-weight: 400;
+margin: 0;
+padding: 5px 0;
+line-height: 1.8;
+word-wrap: break-word;
     }
 </style>
 
-<%- include('./partials/footer') %>
