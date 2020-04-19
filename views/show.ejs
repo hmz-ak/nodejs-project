@@ -4,7 +4,12 @@
         <div class="card-body">
     <div class="thumbnail" >
         <div class="imgg">
-            <img style="max-width: 720px;width: 100%; max-height: 480px;" src="../<%=data.image%>" alt="">
+            <img style="max-width: 720px;width: 100%; max-height: 480px;" src="../<%=data.image%>" alt=""><br><br>
+            <a class="btn btn-warning" href="/post/<%= data._id %>/edit">Edit</a>
+            <form style="display: inline;" action="/post/<%= data._id %>?_method=DELETE" method="POST">
+            <input type="hidden" name="image" value="<%=data.image%>">
+            <button class="btn btn-danger" >Delete</button>
+            </form>
             <h2 class="card-title mt-4 f"><%= data.name %></h2>
         </div>
       
