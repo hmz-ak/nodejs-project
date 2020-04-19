@@ -1,9 +1,9 @@
-<%- include('./partials/header') %>
-<div class="container">
+<%- include('../partials/header') %>
+<div class="container mt-4">
     <h1 style="text-align: center;">Edit <%= data.name %></h1>
     <div class="row">
         <div style="width: 30%; margin: 25px auto;">
-            <form action="/post/<%=data._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/index/<%=data._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <input class="form-control" type="text" name="name" value="<%=data.name%>">
                 </div>
@@ -11,16 +11,16 @@
                     <textarea class="form-control" type="text" name="desc" ><%=data.description%></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="file" name="image" value="../<%=data.image%>">
+                    <input type="file" name="image" value="../../<%=data.image%>">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn btn-warning btn-block" type="submit">Submit!</button>
                 </div>
                 
             </form>
-            <a class="btn btn-sm btn-primary" href="/post/<%= data._id %>">Go Back</a>
+            <a class="btn btn-sm btn-primary" href="/index/<%= data._id %>">Go Back</a>
 
         </div>
     </div>
+   
 </div>
-

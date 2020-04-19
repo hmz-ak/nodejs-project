@@ -11,7 +11,7 @@ var storage=multer.diskStorage({
         cb(null,'./uploads/')
     },
     filename:function(req,file,cb){
-        cb(null,file.originalname)
+        cb(null,Date.now()+file.originalname);
 }
 });
 
@@ -39,25 +39,25 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect("mongodb://localhost:27017/portfolio_db",{useNewUrlParser: true,useUnifiedTopology: true});
 
 //Index route
-app.get("/",function(req,res){
+app.get("/index",function(req,res){
     Post.find({},function(err,body){
         if(err){
             console.log(err)
         }else{
             
-            res.render("index",{data:body});
+            res.render("projects/index",{data:body});
         }
     })
 });
 
 //NEW show form to create new project entry
 //get the data and send it to post campgrounds
-app.get("/post/new",function(req,res){
-    res.render("new");
+app.get("/index/new",function(req,res){
+    res.render("projects/new");
 });
 
 //Create route
-app.post("/post",upload.single('image'),function(req,res){
+app.post("/index",upload.single('image'),function(req,res){
     var n=req.body.name;
     var img=req.file.path;
     var desc=req.body.desc;
@@ -73,38 +73,38 @@ app.post("/post",upload.single('image'),function(req,res){
             console.log(err);
         }
         else{
-            res.redirect("/"); //it will redirect to get campgrounds route by default
+            res.redirect("/index"); //it will redirect to get index route by default
         }
     });
 });
 
 //Show route
-app.get("/post/:id",function(req,res){
+app.get("/index/:id",function(req,res){
   Post.findById(req.params.id,function(err,found){
     if(err){
         console.log(err);
     }else{
       
-        res.render("show",{data:found});
+        res.render("projects/show",{data:found});
     }
   });
 });
 
 //edit route
-app.get("/post/:id/edit",function(req,res){
+app.get("/index/:id/edit",function(req,res){
 
     Post.findById(req.params.id,function(err,found){
         if(err){
             console.log(err);
         }else{
-            res.render("edit",{data:found});
+            res.render("projects/edit",{data:found});
         }
     });
 
 });
 
 //put req
-app.put("/post/:id",upload.single('image'),function(req,res){
+app.put("/index/:id",upload.single('image'),function(req,res){
     if(req.file){
         var n=req.body.name;
         var img=req.file.path;
@@ -120,10 +120,10 @@ app.put("/post/:id",upload.single('image'),function(req,res){
             if(err){
                 console.log(err);
             }else{
-                if(img===found.image){
+                if(img===found.image){ //if updated image is same as previous image
                     //do nothing
                 }else{
-                 fs.unlinkSync(found.image);
+                 fs.unlinkSync(found.image); //removes the image from uploads folder
                 }
             }
         })
@@ -140,21 +140,21 @@ app.put("/post/:id",upload.single('image'),function(req,res){
     if(err){
         console.log(err);
     }else{   
-        res.redirect("/post/"+req.params.id);
+        res.redirect("/index/"+req.params.id);
     }
  });
 });
 
 //delete route
 
-app.delete("/post/:id",function(req,res){
+app.delete("/index/:id",function(req,res){
     var image=req.body.image;
     Post.findByIdAndRemove(req.params.id,function(err,removed){
      if(err){
         console.log(err);
         }else{
          fs.unlinkSync(image);
-         res.redirect("/");
+         res.redirect("/index");
          }
      });
 

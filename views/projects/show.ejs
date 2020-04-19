@@ -1,13 +1,13 @@
-<%- include('./partials/header') %>
+<%- include('../partials/header') %>
 <div class="container mt-4" >
-    <a class="btn btn-sm btn-primary mb-2" href="/">Go Back</a>
+    <a class="btn btn-sm btn-primary mb-2" href="/index">Go Back</a>
     <div class="card" >
         <div class="card-body">
     <div class="thumbnail" >
         <div class="imgg">
-            <img style="max-width: 720px;width: 100%; max-height: 480px;" src="../<%=data.image%>" alt=""><br><br>
-            <a class="btn btn-warning" href="/post/<%= data._id %>/edit">Edit</a>
-            <form style="display: inline;" action="/post/<%= data._id %>?_method=DELETE" method="POST">
+            <img style="max-width: 720px;width: 100%; max-height: 480px;" src="../../<%=data.image%>" alt=""><br><br>
+            <a class="btn btn-warning" href="/index/<%= data._id %>/edit">Edit</a>
+            <form style="display: inline;" action="/index/<%= data._id %>?_method=DELETE" method="POST">
             <input type="hidden" name="image" value="<%=data.image%>">
             <button class="btn btn-danger" >Delete</button>
             </form>
@@ -25,7 +25,7 @@
 </div>
 
 
-<%- include('./partials/footer') %>
+<%- include('../partials/footer') %>
 
 <style>
     .imgg{
