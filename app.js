@@ -105,7 +105,6 @@ app.get("/post/:id/edit",function(req,res){
 
 //put req
 app.put("/post/:id",upload.single('image'),function(req,res){
-
     if(req.file){
         var n=req.body.name;
         var img=req.file.path;
@@ -113,41 +112,51 @@ app.put("/post/:id",upload.single('image'),function(req,res){
         var data={
             name:n,
             image:img,
-            description:desc
-    
+            description:desc 
         }
+
+        //this code snippet ensures that previous image is removed from uploads folder if updating of image is being performed!
+        Post.findById(req.params.id,function(err,found){
+            if(err){
+                console.log(err);
+            }else{
+                if(img===found.image){
+                    //do nothing
+                }else{
+                 fs.unlinkSync(found.image);
+                }
+            }
+        })
+             
     }else{
         var n=req.body.name;
         var desc=req.body.desc;
         var data={
             name:n, 
-            description:desc
-    
+            description:desc 
         }
     }
-
-    
-
  Post.findByIdAndUpdate(req.params.id,data,function(err,updated){
     if(err){
         console.log(err);
-    }else{
-       
+    }else{   
         res.redirect("/post/"+req.params.id);
     }
  });
 });
 
+//delete route
+
 app.delete("/post/:id",function(req,res){
     var image=req.body.image;
     Post.findByIdAndRemove(req.params.id,function(err,removed){
-        if(err){
-            console.log(err);
+     if(err){
+        console.log(err);
         }else{
-            fs.unlinkSync(image);
-            res.redirect("/");
-        }
-    });
+         fs.unlinkSync(image);
+         res.redirect("/");
+         }
+     });
 
 });
 
