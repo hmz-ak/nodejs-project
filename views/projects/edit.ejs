@@ -1,8 +1,12 @@
 <%- include('../partials/header') %>
+
 <div class="container mt-4">
+    <a class="btn btn-sm btn-primary mb-2" href="/index/<%= data._id %>">Go Back</a>
+    <div class="card" >
+        <div class="card-body">
     <h1 style="text-align: center;">Edit <%= data.name %></h1>
     <div class="row">
-        <div style="width: 30%; margin: 25px auto;">
+        <div style="width: 35%; margin: 25px auto;">
             <form action="/index/<%=data._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <input class="form-control" type="text" name="name" value="<%=data.name%>">
@@ -18,11 +22,14 @@
                 </div>
                 
             </form>
-            <a class="btn btn-sm btn-primary" href="/index/<%= data._id %>">Go Back</a>
+            
 
         </div>
     </div>
+
     <script>
         CKEDITOR.replace( 'editor' );
     </script> 
+    </div>
+    </div>
 </div>
