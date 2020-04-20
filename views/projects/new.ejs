@@ -8,7 +8,7 @@
                     <input class="form-control" type="text" name="name" placeholder="Enter Title">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" type="text" name="desc" placeholder="Enter description"></textarea>
+                    <textarea id="editor" class="form-control" id="editor" type="text" name="desc" placeholder="Enter description"></textarea>
                 </div>
                 <div class="form-group">
                     <input class="" type="file" name="image" placeholder="Image url">
@@ -22,5 +22,8 @@
 
         </div>
     </div>
+    <script>
+        CKEDITOR.replace( 'editor' );
+    </script> 
 </div>
 
